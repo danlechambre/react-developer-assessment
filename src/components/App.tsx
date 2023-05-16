@@ -42,6 +42,15 @@ function getPosts(): Promise<PostData[]> {
     });
 }
 
+/*
+NB. I could bring in 'date-fns' or similar to make sure we're checking for an actual date,
+handling errors etc. but this feels appropriate for the exercise
+*/
+function getDateString(date: string) {
+  const dt = new Date(date);
+  return dt.toLocaleDateString();
+}
+
 const App: React.FC = () => {
   // 3. Set up a simple state/effect combo for getting the posts
   const [posts, setPosts] = useState<PostData[] | []>([]);
@@ -50,12 +59,36 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      {/* 4. test we're getting data. */}
-      {posts.map((post) => (
-        <div>{post.title}</div>
-      ))}
-    </div>
+    <main>
+      <h1>Awesome Posts</h1>
+      <section>
+        <ul>
+          {posts.map((post) => (
+            <li key={post.id}>
+              <article>
+                <h2>{post.title}</h2>
+                <div>
+                  <img src={post.author.avatar} alt="Author avatar" />
+                  <span>{post.author.name}</span>
+                  <time dateTime={post.publishDate}>{getDateString(post.publishDate)}</time>
+                </div>
+                <p>{post.summary}</p>
+                {post.categories.length > 0 && (
+                  <footer>
+                    <h3>Categories</h3>
+                    <ul>
+                      {post.categories.map((cat) => (
+                        <li>{cat.name}</li>
+                      ))}
+                    </ul>
+                  </footer>
+                )}
+              </article>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
   );
 };
 
