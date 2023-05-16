@@ -1,12 +1,3 @@
-.appContainer {
-  max-width: 1024px;
-  margin: auto;
-}
-
-.wrapper {
-  margin: 0 var(--spacing-5);
-}
-
 .flexContainer {
   display: flex;
   flex-direction: column-reverse;
@@ -29,9 +20,4 @@
   margin-bottom: var(--spacing-5);
   padding: 0;
   display: block;
-}
-
-.heading {
-  font-size: var(--text-xl);
-  filter: drop-shadow(25px 15px 25px rgba(135, 37, 188, 0.4));
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Category } from './App';
 import { mapValues } from 'lodash';
 import styles from '../styles/CategoryFilter.module.css';
+import { Category } from './ArticlesPage';
 
 interface CategoryFilterProps {
   categories: Category[];

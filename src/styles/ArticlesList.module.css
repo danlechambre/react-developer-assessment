@@ -1,0 +1,12 @@
+.articleList {
+  margin: var(--spacing-4) var(--spacing-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.articleListItem {
+  margin: 0;
+  margin-bottom: var(--spacing-5);
+  padding: 0;
+  display: block;
+}

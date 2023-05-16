@@ -1,6 +1,6 @@
-import React from 'react';
-import { PostData } from './App';
+import { Link } from 'react-router-dom';
 import styles from '../styles/Article.module.css';
+import { PostData } from './ArticlesPage';
 
 interface ArticleProps {
   post: PostData;
@@ -37,6 +37,9 @@ const Article = ({ post }: ArticleProps) => {
               </li>
             ))}
           </ul>
+          <Link className={styles.link} to={`posts/${post.id}`}>
+            Read more...
+          </Link>
         </footer>
       )}
     </article>

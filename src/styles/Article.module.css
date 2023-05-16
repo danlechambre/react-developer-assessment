@@ -33,6 +33,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0;
+  margin-bottom: var(--spacing-3);
   padding: 0;
   list-style: none;
   color: var(--color-secondary);
@@ -42,4 +43,8 @@
   margin-right: var(--spacing-4);
   font-size: var(--text-sm);
   font-weight: bold;
+}
+
+.link {
+  color: var(--color-primary);
 }
