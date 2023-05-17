@@ -24,35 +24,39 @@ const CategoryFilter = ({ categories, filter, setFilter }: CategoryFilterProps) 
     setFilter(resetObj);
   };
 
-  return (
-    <div className={styles.wrapper}>
-      <fieldset className={styles.fieldSet}>
-        <legend className={styles.legend}>Filter by category: </legend>
-        <div className={styles.flexWrapper}>
-          {categories.map((category) => (
-            <div key={category.id} className={styles.inputWrapper}>
-              <input
-                type="checkbox"
-                id={category.id}
-                name="categories"
-                value={category.name}
-                onChange={handleUpdateCategoryFilter}
-                checked={filter[category.name] ?? false}
-                className={styles.checkbox}
-              />
-              <label htmlFor={category.id} className={styles.inputLabel}>
-                {category.name}
-              </label>
-            </div>
-          ))}
-        </div>
-      </fieldset>
+  if (categories.length > 0) {
+    return (
+      <div className={styles.wrapper}>
+        <fieldset className={styles.fieldSet}>
+          <legend className={styles.legend}>Filter by category: </legend>
+          <div className={styles.flexWrapper}>
+            {categories.map((category) => (
+              <div key={category.id} className={styles.inputWrapper}>
+                <input
+                  type="checkbox"
+                  id={category.id}
+                  name="categories"
+                  value={category.name}
+                  onChange={handleUpdateCategoryFilter}
+                  checked={filter[category.name] ?? false}
+                  className={styles.checkbox}
+                />
+                <label htmlFor={category.id} className={styles.inputLabel}>
+                  {category.name}
+                </label>
+              </div>
+            ))}
+          </div>
+        </fieldset>
 
-      <button className={styles.button} type="button" onClick={handleClearSelection}>
-        Clear Selection
-      </button>
-    </div>
-  );
+        <button className={styles.button} type="button" onClick={handleClearSelection}>
+          Clear Selection
+        </button>
+      </div>
+    );
+  }
+
+  return null;
 };
 
 export default CategoryFilter;

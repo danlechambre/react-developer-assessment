@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import CategoryFilter from './CategoryFilter';
 import styles from '../styles/ArticlesPage.module.css';
-import Article from './Article';
 import { uniqWith } from 'lodash';
+import ArticlesList from './ArticlesList';
 
 export interface Author {
   name: string;
@@ -73,13 +73,7 @@ const ArticlesPage = () => {
   return (
     <div className={styles.flexContainer}>
       <section>
-        <ul className={styles.articleList}>
-          {posts.filter(filterFn).map((post) => (
-            <li className={styles.articleListItem} key={post.id}>
-              <Article post={post} />
-            </li>
-          ))}
-        </ul>
+        <ArticlesList posts={posts} filterFn={filterFn} />
       </section>
 
       <section>
