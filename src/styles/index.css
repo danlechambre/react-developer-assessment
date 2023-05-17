@@ -31,3 +31,57 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+@keyframes multi-step-in {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 300px;
+    opacity: 0;
+  }
+  100% {
+    height: 300px;
+    opacity: 1;
+  }
+}
+
+@keyframes multi-step-out {
+  0% {
+    margin-bottom: var(--spacing-5);
+    height: 300px;
+    opacity: 1;
+  }
+  50% {
+    margin-bottom: var(--spacing-5);
+    height: 300px;
+    opacity: 0;
+  }
+  100% {
+    margin-bottom: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.list-item-transition-enter {
+  opacity: 0;
+  margin-bottom: 0;
+}
+.list-item-transition-enter-active {
+  opacity: 1;
+  margin-bottom: var(--spacing-5);
+  animation: multi-step-in 500ms;
+}
+.list-item-transition-exit {
+  opacity: 1;
+  margin-bottom: var(--spacing-5);
+  height: 300px;
+}
+.list-item-transition-exit-active {
+  opacity: 0;
+  height: 0;
+  margin-bottom: 0;
+  animation: multi-step-out 500ms;
+}

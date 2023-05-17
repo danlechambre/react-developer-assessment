@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
 import styles from '../styles/ArticlesList.module.css';
 import Article from './Article';
 import { PostData } from './ArticlesPage';
+import { createRef } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface ArticlesListProps {
   posts: PostData[];
@@ -9,14 +10,18 @@ interface ArticlesListProps {
 }
 
 const ArticlesList = ({ posts, filterFn }: ArticlesListProps) => {
+  const postsWithNodeRef = posts.map((p) => ({ ...p, nodeRef: createRef<any>() }));
+
   return (
-    <ul className={styles.articleList}>
-      {posts.filter(filterFn).map((post) => (
-        <li className={styles.articleListItem} key={post.id}>
-          <Article post={post} />
-        </li>
+    <TransitionGroup className={`nodes-container ${styles.articleList}`} component="ul">
+      {postsWithNodeRef.filter(filterFn).map((post) => (
+        <CSSTransition key={post.id} nodeRef={post.nodeRef} timeout={1000} classNames="node">
+          <li className={styles.articleListItem} ref={post.nodeRef}>
+            <Article post={post} />
+          </li>
+        </CSSTransition>
       ))}
-    </ul>
+    </TransitionGroup>
   );
 };
 
