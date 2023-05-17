@@ -15,7 +15,12 @@ const ArticlesList = ({ posts, filterFn }: ArticlesListProps) => {
   return (
     <TransitionGroup className={`nodes-container ${styles.articleList}`} component="ul">
       {postsWithNodeRef.filter(filterFn).map((post) => (
-        <CSSTransition key={post.id} nodeRef={post.nodeRef} timeout={1000} classNames="node">
+        <CSSTransition
+          key={post.id}
+          nodeRef={post.nodeRef}
+          timeout={1000}
+          classNames="list-item-transition"
+        >
           <li className={styles.articleListItem} ref={post.nodeRef}>
             <Article post={post} />
           </li>
